@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Page = () => {
+const Settings = () => {
   return (
     <View>
-      <Text>Profile from tabs</Text>
+      <Text>Settings</Text>
     </View>
   )
 }
 
-export default Page
+export default Settings
