@@ -1,12 +1,15 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Settings = () => {
-  return (
-    <View>
-      <Text>Settings</Text>
-    </View>
-  )
+    return (
+        <SafeAreaView>
+            <View>
+                <Text>Settings</Text>
+            </View>
+        </SafeAreaView>
+    )
 }
 
 export default Settings
