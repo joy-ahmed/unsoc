@@ -1,6 +1,6 @@
-import { Ionicons } from '@expo/vector-icons'
 import { Tabs } from 'expo-router'
 import React from 'react'
+import CustomTabBar from '../components/CustomTabBar'
 
 const TabsLayout = () => {
     return (
@@ -8,8 +8,9 @@ const TabsLayout = () => {
             screenOptions={{
                 headerShown: false
             }}
+            tabBar={(props) => <CustomTabBar {...props} />}
         >
-            <Tabs.Screen
+            {/* <Tabs.Screen
                 name="index"
                 options={{
                     title: "Home",
@@ -35,7 +36,8 @@ const TabsLayout = () => {
                         <Ionicons name="settings" size={size} color={color} />
                     )
                 }}
-            />
+            /> */}
+
         </Tabs>
     )
 }
