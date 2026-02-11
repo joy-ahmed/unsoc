@@ -11,42 +11,56 @@ export default function CustomTabBar({
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.wrapper, { paddingBottom: insets.bottom }]}>
-      {state.routes.map((route, index) => {
-        const isFocused = state.index === index;
-        const { options } = descriptors[route.key];
+    <View
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: 0,
+      }}
+    >
+      <View
+        style={[
+          styles.wrapper,
+          { paddingBottom: insets.bottom > 0 ? insets.bottom : 8 },
+        ]}
+      >
+        {state.routes.map((route, index) => {
+          const isFocused = state.index === index;
+          const { options } = descriptors[route.key];
 
-        const onPress = () => {
-          if (!isFocused) {
-            navigation.navigate(route.name);
-          }
-        };
+          const onPress = () => {
+            if (!isFocused) {
+              navigation.navigate(route.name);
+            }
+          };
 
-        const icon =
-          route.name === "index"
-            ? "home"
-            : route.name === "profile"
-              ? "person"
-              : "settings";
+          const icon =
+            route.name === "index"
+              ? "home"
+              : route.name === "profile"
+                ? "person"
+                : "settings";
 
-        return (
-          <TouchableOpacity
-            key={route.key}
-            onPress={onPress}
-            style={styles.tab}
-            activeOpacity={0.7}
-          >
-            <Ionicons
-              name={icon}
-              size={24}
-              color={isFocused ? "#2563eb" : "#9ca3af"}
-            />
-            <Text style={{ color: isFocused ? "#2563eb" : "#9ca3af" }}>
-              {options.title}
-            </Text>
-          </TouchableOpacity>
-        );
-      })}
+          return (
+            <TouchableOpacity
+              key={route.key}
+              onPress={onPress}
+              style={styles.tab}
+              activeOpacity={0.7}
+            >
+              <Ionicons
+                name={icon}
+                size={24}
+                color={isFocused ? "#2563eb" : "#9ca3af"}
+              />
+              <Text style={{ color: isFocused ? "#2563eb" : "#9ca3af" }}>
+                {options.title}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </View>
   );
 }
@@ -54,14 +68,24 @@ export default function CustomTabBar({
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    backgroundColor: "#fff",
-    borderTopWidth: 0.5,
-    borderColor: "#e5e7eb",
+    marginHorizontal: 16,
+    marginBottom: 12,
+    borderRadius: 20,
+    backgroundColor: "#ffffff",
+    paddingVertical: 12,
+
+    // Shadow (iOS)
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+
+    // Elevation (Android)
+    elevation: 10,
   },
   tab: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 10,
   },
 });
